@@ -1,0 +1,29 @@
+<div class="character-detail-container">
+  <div class="header">
+    <a (click)="goBack()" class="back-button">&#8592; BACK</a>
+    <h1 *ngIf="!isLoading && character">{{ character.name }}</h1>
+  </div>
+
+  <img *ngIf="character" [src]="character.image" [alt]="character.name" class="character-image">
+
+  <div *ngIf="character" class="character-info-container">
+    <div class="character-info">
+      <h2>Character info</h2>
+      <div class="info-grid">
+        <div><strong>Species<br></strong> {{ character.species }}</div>
+        <div><strong>Origin<br></strong> {{ character.origin.name || 'Unknown' }}</div>
+        <div><strong>Location<br></strong> {{ character.location.name || 'Unknown' }}</div>
+        <div><strong>Status<br></strong> {{ character.status }}</div>
+        <div><strong>Gender<br></strong> {{ character.gender }}</div>
+      </div>
+    </div>
+
+    <div class="episodes">
+      <h2>Episodes</h2>
+      <ul>
+        <li *ngFor="let episode of limitedEpisodes">{{ episode }}</li>
+      </ul>
+
+    </div>
+  </div>
+</div>

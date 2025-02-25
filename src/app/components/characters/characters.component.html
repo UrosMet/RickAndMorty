@@ -1,0 +1,32 @@
+<div class="characters-container">
+  <div class="characters-box">
+    <div class="search-container">
+      <input type="text" placeholder="Search character..." (input)="onSearch($event)">
+    </div>
+    <h2 class="characters-title">Characters</h2>
+
+    <div class="characters-scrollable" (scroll)="onScroll($event)">
+      <div *ngFor="let character of characters" class="character-card" (click)="goToCharacterDetails(character.id)">
+        <img [src]="character.image" [alt]="character.name">
+        <div class="character-info">
+          <h2>{{ character.name }}</h2>
+          <div class="character-details">
+            <div class="detail-column">
+              <strong>Species</strong>
+              <p>{{ character.species }}</p>
+            </div>
+            <div class="detail-column">
+              <strong>Origin</strong>
+              <p>{{ character.origin.name }}</p>
+            </div>
+            <div class="detail-column">
+              <strong>Location</strong>
+              <p>{{ character.location.name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
