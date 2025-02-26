@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Character} from "../../models/character.model";
 import {Router, RouterModule, RouterOutlet} from "@angular/router";
 import {RickandmortyService} from "../../services/rickandmorty.service";
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.css'
 })
-export class CharactersComponent {
+export class CharactersComponent implements OnInit{
   characters: Character[] = [];
   page : number = 1;
   searchQuery: string = '';
@@ -29,9 +29,9 @@ export class CharactersComponent {
   async loadCharacters(): Promise<void> {
     if (this.isLoading) return ;
     this.isLoading = true;
-    console.log('Učitavanje podataka...');  // Log pre slanja zahteva
+    console.log('Učitavanje podataka...');
     const data = await this.rickAndMortyService.getCharacters(this.page,this.searchQuery);
-    console.log('Podaci primljeni:', data);  // Log nakon što API vrati podatke
+    console.log('Podaci primljeni:', data);
     if (data && data.results){
       this.characters = [...this.characters , ...data.results];
       this.page++;
